@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gritsquare | Message Board</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Gritsquare</h1>
+    <p>A public message board for students</p>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Write a message</h2>
+
+      <form id="messageForm">
+        <input type="text" id="nameInput" placeholder="Your name" required />
+        <textarea id="messageInput" placeholder="Write your message..." required></textarea>
+        <button type="submit">Post message</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Messages</h2>
+      <div id="messagesList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Created for Version Control course | FE25</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
