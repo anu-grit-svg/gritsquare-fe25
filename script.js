@@ -1,4 +1,4 @@
-const firebaseURL = "PASTE_YOUR_FIREBASE_DATABASE_URL_HERE/messages.json";
+const firebaseURL = "https://gritsquare-fe25-default-rtdb.europe-west1.firebasedatabase.app/messages.json";
 
 const form = document.getElementById("messageForm");
 const nameInput = document.getElementById("nameInput");
@@ -22,47 +22,57 @@ form.addEventListener("submit", async function (event) {
     date: new Date().toLocaleString()
   };
 
-  await fetch(firebaseURL, {
-    method: "POST",
-    body: JSON.stringify(newMessage),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
+  try {
+    await fetch(firebaseURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newMessage)
+    });
 
-  nameInput.value = "";
-  messageInput.value = "";
+    form.reset();
+    getMessages();
 
-  getMessages();
+  } catch (error) {
+    console.error(error);
+    alert("Could not save the message.");
+  }
 });
 
 async function getMessages() {
   messagesList.innerHTML = "<p>Loading messages...</p>";
 
-  const response = await fetch(firebaseURL);
-  const data = await response.json();
+  try {
+    const response = await fetch(firebaseURL);
+    const data = await response.json();
 
-  messagesList.innerHTML = "";
+    messagesList.innerHTML = "";
 
-  if (!data) {
-    messagesList.innerHTML = "<p>No messages yet. Be the first to write one.</p>";
-    return;
+    if (!data) {
+      messagesList.innerHTML = "<p>No messages yet. Be the first to write one.</p>";
+      return;
+    }
+
+    const messages = Object.values(data).reverse();
+
+    messages.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "message";
+
+      div.innerHTML = `
+        <h3>${item.name}</h3>
+        <p>${item.message}</p>
+        <small>${item.date}</small>
+      `;
+
+      messagesList.appendChild(div);
+    });
+
+  } catch (error) {
+    console.error(error);
+    messagesList.innerHTML = "<p>Unable to load messages.</p>";
   }
-
-  const messages = Object.values(data).reverse();
-
-  messages.forEach(function (item) {
-    const messageElement = document.createElement("div");
-    messageElement.classList.add("message");
-
-    messageElement.innerHTML = `
-      <h3>${item.name}</h3>
-      <p>${item.message}</p>
-      <small>${item.date}</small>
-    `;
-
-    messagesList.appendChild(messageElement);
-  });
 }
 
 getMessages();
