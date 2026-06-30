@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+header {
+  background: #006b68;
+  color: white;
+  text-align: center;
+  padding: 32px 16px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+header p {
+  margin: 8px 0 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+main {
+  max-width: 800px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  background: #006b68;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #004f4d;
+}
+
+.message {
+  background: #eef7f6;
+  border-left: 5px solid #006b68;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+.message h3 {
+  margin: 0 0 8px;
+}
+
+.message p {
+  margin: 0;
+}
+
+.message small {
+  display: block;
+  margin-top: 8px;
+  color: #555;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 28px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+}
